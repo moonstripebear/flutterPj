@@ -1,8 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'authentication.dart';
-import 'package:flutter/services.dart';
+
 import 'main.dart';
 import 'signup.dart';
 import 'home.dart';
@@ -146,8 +145,8 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Text("Submit", style: TextStyle(color: Colors.white)),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30)),
-                  onPressed: () {
-                    if (auth.fetchCredentials(
+                  onPressed: () async {
+                    if (await auth.fetchCredentials(
                         usernameController.text, passwordController.text)) {
                       Navigator.pushAndRemoveUntil(
                         context,

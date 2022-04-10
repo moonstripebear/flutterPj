@@ -1,16 +1,42 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 var _username = ["username"];
 var _password = ["password123"];
+
 int _i = 1;
 
+class Res {
+  final String status;
+  const Res({required this.status});
+  factory Res.fromJson(Map<String, dynamic> json) {
+    return Res(
+      status: json['status'],
+    );
+  }
+}
+
 class Authentication {
-  bool fetchCredentials(String username, String password) {
-    for (var j = 0; j < _username.length; j++) {
-      if (username == _username[j] && password == _password[j]) {
+  Future<bool> fetchCredentials(String username, String password) async {
+    var jsonResponse = null;
+    var response = await http
+        .post(Uri.parse('http://127.0.0.1/login'), headers: <String, String>{
+      'Content-Type': 'application/x-www-form-urlencoded',
+    }, body: {
+      'username': username,
+      'password': password,
+    });
+
+    if (response.statusCode == 200) {
+      jsonResponse = Res.fromJson(jsonDecode(response.body));
+      print(jsonResponse.status);
+      if (jsonResponse.status == 'ok') {
         return true;
       }
     }
+
     return false;
   }
 
