@@ -1,99 +1,46 @@
-// import 'dart:js';
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'authentication.dart';
+import 'package:flutter/services.dart';
+import 'login.dart';
+
+final auth = Authentication();
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Login Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        fontFamily: 'SanFrancisco',
+      ),
       home: Scaffold(
-        appBar: AppBar(
-          title: Text('WHAT THE FUCK'),
-        ),
-        body: LoginPage(),
+        resizeToAvoidBottomInset: true,
+        backgroundColor: const Color.fromRGBO(40, 38, 56, 1),
+        body: LoginScreen(),
+        bottomNavigationBar: BottomAppBar(
+            color: Colors.transparent,
+            elevation: 0,
+            child: Container(
+              padding: EdgeInsets.all(20),
+              child: Text(
+                "Company name, Inc",
+                style: TextStyle(color: Colors.white),
+                textAlign: TextAlign.center,
+              ),
+            )),
       ),
-    );
-  }
-}
-
-class LoginPage extends StatelessWidget {
-  final TextEditingController textController = new TextEditingController();
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        children: <Widget>[
-          TextField(
-            controller: textController,
-            decoration: InputDecoration(hintText: '請輸入帳號'),
-          ),
-          ElevatedButton(
-              child: Text('印出'),
-              onPressed: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => BPage()));
-              })
-        ],
-      ),
-    );
-  }
-}
-
-class BPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('我是 B 頁'),
-      ),
-      body: _BPage(),
-    );
-  }
-}
-
-class _BPage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: ElevatedButton(
-        child: Text('返回首頁'),
-        onPressed: () {
-          Navigator.pop(context);
-        },
-      ),
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          color: Colors.deepOrangeAccent,
-          child: Text('1', style: TextStyle(fontSize: 100)),
-        ),
-        Container(
-          color: Colors.amber,
-          child: Text('2', style: TextStyle(fontSize: 120)),
-        ),
-        Container(
-          color: Colors.red,
-          child: Text('3', style: TextStyle(fontSize: 100)),
-        )
-      ],
     );
   }
 }
