@@ -22,7 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final TapGestureRecognizer _gestureRecognizer = TapGestureRecognizer()
     ..onTap = () {
       if (kDebugMode) {
-        print("Hello world from ");
+        print("Hello world from _gestureRecognizer");
       }
     };
 
