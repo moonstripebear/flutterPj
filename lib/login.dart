@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_pj/repository/account.dart';
 
 import 'main.dart';
 import 'signup.dart';
@@ -146,11 +147,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30)),
                   onPressed: () async {
+                    // await account.fetchAccount('1');
                     if (await auth.fetchCredentials(
                         usernameController.text, passwordController.text)) {
                       Navigator.pushAndRemoveUntil(
                         context,
-                        MaterialPageRoute(builder: (context) => HomePage()),
+                        MaterialPageRoute(
+                            builder: (context) => const HomePage()),
                         (Route<dynamic> route) => false,
                       );
                     } else {

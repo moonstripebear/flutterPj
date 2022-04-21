@@ -3,11 +3,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'authentication.dart';
+import 'repository/account.dart';
+import 'repository/authentication.dart';
 import 'package:flutter/services.dart';
 import 'login.dart';
 
-final auth = Authentication();
+final auth = AuthRepo();
+final account = AccountRepo();
 
 void main() {
   runApp(const MyApp());

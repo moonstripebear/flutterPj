@@ -52,9 +52,10 @@ class _SignupPageContent extends State<SignupPageContent> {
       returnVisibilityString = "Username cannot be empty";
     } else if (password1 == "" || password2 == "") {
       returnVisibilityString = "Password fields cant be empty";
-    } else if (!auth.isPasswordCompliant(password1)) {
-      returnVisibilityString = "Not password compliant";
     }
+    //  else if (!auth.isPasswordCompliant(password1)) {
+    //   returnVisibilityString = "Not password compliant";
+    // }
     return true;
   }
 
@@ -206,31 +207,31 @@ class _SignupPageContent extends State<SignupPageContent> {
                         "Username: ${usernameController.text}\npassword: ${passwordController1.text}\nretry password ${passwordController2.text}");
                   }
 
-                  if (usernameController.text != "" &&
-                      passwordController1.text == passwordController2.text &&
-                      passwordController2.text != "" &&
-                      auth.isPasswordCompliant(passwordController1.text)) {
-                    print("I got in here");
-                    if (!auth.checkUserRepeat(usernameController.text)) {
-                      auth.insertCredentials(
-                          usernameController.text, passwordController1.text);
+                  // if (usernameController.text != "" &&
+                  //     passwordController1.text == passwordController2.text &&
+                  //     passwordController2.text != "" &&
+                  //     auth.isPasswordCompliant(passwordController1.text)) {
+                  //   print("I got in here");
+                  //   if (!auth.checkUserRepeat(usernameController.text)) {
+                  //     auth.insertCredentials(
+                  //         usernameController.text, passwordController1.text);
 
-                      Navigator.of(context).pushAndRemoveUntil(
-                        MaterialPageRoute(builder: (context) => MyApp()),
-                        (Route<dynamic> route) => false,
-                      );
-                    } else {
-                      setState(() {
-                        returnVisibilityString = "Username already exists";
-                        _isVisible = true;
-                      });
-                    }
-                  } else {
-                    setState(() {
-                      _isVisible = returnVisibility(passwordController1.text,
-                          passwordController2.text, usernameController.text);
-                    });
-                  }
+                  //     Navigator.of(context).pushAndRemoveUntil(
+                  //       MaterialPageRoute(builder: (context) => MyApp()),
+                  //       (Route<dynamic> route) => false,
+                  //     );
+                  //   } else {
+                  //     setState(() {
+                  //       returnVisibilityString = "Username already exists";
+                  //       _isVisible = true;
+                  //     });
+                  //   }
+                  // } else {
+                  //   setState(() {
+                  //     _isVisible = returnVisibility(passwordController1.text,
+                  //         passwordController2.text, usernameController.text);
+                  //   });
+                  // }
                 }),
           ),
         ],
