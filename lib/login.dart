@@ -1,10 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_pj/repository/account.dart';
 
-import 'main.dart';
-import 'signup.dart';
 import 'home.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -148,49 +145,48 @@ class _LoginScreenState extends State<LoginScreen> {
                       borderRadius: BorderRadius.circular(30)),
                   onPressed: () async {
                     // await account.fetchAccount('1');
-                    if (await auth.fetchCredentials(
-                        usernameController.text, passwordController.text)) {
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const HomePage()),
-                        (Route<dynamic> route) => false,
-                      );
-                    } else {
-                      setState(() {
-                        _isVisible = true;
-                      });
-                    }
+                    // if (await auth.fetchCredentials(
+                    //     usernameController.text, passwordController.text)) {
+                    Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(builder: (context) => const HomePage()),
+                      (Route<dynamic> route) => false,
+                    );
+                    // } else {
+                    //   setState(() {
+                    //     _isVisible = true;
+                    //   });
+                    // }
                   }),
             ),
 
             // Register
-            Container(
-                padding: EdgeInsets.only(top: 40, left: 20, right: 20),
-                child: Center(
-                    child: RichText(
-                  text: TextSpan(
-                    text: "Dont have an account? ",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 15,
-                    ),
-                    children: [
-                      TextSpan(
-                          text: " Register here",
-                          style: TextStyle(
-                              color: Colors.blue, fontWeight: FontWeight.bold),
-                          recognizer: new TapGestureRecognizer()
-                            ..onTap = () => {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => SignupPage()),
-                                  )
-                                }),
-                    ],
-                  ),
-                )))
+            // Container(
+            //     padding: EdgeInsets.only(top: 40, left: 20, right: 20),
+            //     child: Center(
+            //         child: RichText(
+            //       text: TextSpan(
+            //         text: "Dont have an account? ",
+            //         style: TextStyle(
+            //           color: Colors.white,
+            //           fontSize: 15,
+            //         ),
+            //         children: [
+            //           TextSpan(
+            //               text: " Register here",
+            //               style: TextStyle(
+            //                   color: Colors.blue, fontWeight: FontWeight.bold),
+            //               recognizer: new TapGestureRecognizer()
+            //                 ..onTap = () => {
+            //                       Navigator.push(
+            //                         context,
+            //                         MaterialPageRoute(
+            //                             builder: (context) => SignupPage()),
+            //                       )
+            //                     }),
+            //         ],
+            //       ),
+            //     )))
           ],
         ));
   }

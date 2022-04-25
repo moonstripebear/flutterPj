@@ -1,6 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_pj/list_page.dart';
+import 'package:flutter_pj/add.dart';
+import 'package:flutter_pj/domain/domain.dart';
 import 'repository/authentication.dart';
 import 'package:flutter/services.dart';
 import 'main.dart';
@@ -12,96 +15,40 @@ class HomePage extends StatefulWidget {
 
   @override
   _HomePageState createState() => _HomePageState();
-
-  // String userid = "";
 }
 
 class _HomePageState extends State<HomePage> {
+  int _currentIndex = 0;
+  final pages = [
+    ListPage(),
+    AddAccount(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true,
-      backgroundColor: const Color.fromRGBO(40, 38, 56, 1),
       appBar: AppBar(
-        title: Text('Home'),
-        backgroundColor: Color(0xFF18b6b2),
+        title: Text('test'),
       ),
-      drawer: MyDrawer(),
-      body: Center(
-        child: Container(
-            // width: 570,
-            // padding: EdgeInsets.all(20),
-            child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: const [
-            Accounts('TEST1'),
-            Accounts('TEST2'),
-            Accounts('TEST3'),
-          ],
-        )),
+      body: pages[_currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: onTapped,
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.white,
+        currentIndex: _currentIndex,
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(icon: new Icon(Icons.home), label: 'home'),
+          BottomNavigationBarItem(icon: new Icon(Icons.add), label: 'ADD'),
+          BottomNavigationBarItem(
+              icon: new Icon(Icons.logout), label: 'logout'),
+        ],
       ),
-      // body: Column(
-      //   crossAxisAlignment: CrossAxisAlignment.center,
-      //   children: <Widget>[
-      //     Center(
-      //       child: Container(
-      //           height: 400,
-      //           width: 200,
-      //           padding: EdgeInsets.all(20),
-      //           alignment: Alignment.center,
-      //           child: Text(
-      //             "Successfull login!",
-      //             textAlign: TextAlign.center,
-      //             style: TextStyle(color: Colors.white, fontSize: 25),
-      //           )),
-      //     ),
-      //     Container(
-      //       height: 100,
-      //       width: 570,
-      //       padding: EdgeInsets.all(20),
-      //       child: RaisedButton(
-      //           color: Colors.pink,
-      //           child: Text("Logout", style: TextStyle(color: Colors.white)),
-      //           shape: RoundedRectangleBorder(
-      //               borderRadius: BorderRadius.circular(30)),
-      //           onPressed: () {
-      //             Navigator.pushAndRemoveUntil(
-      //               context,
-      //               MaterialPageRoute(builder: (context) => MyApp()),
-      //               (Route<dynamic> route) => false,
-      //             );
-      //           }),
-      //     )
-      //   ],
-      // )
     );
   }
-}
 
-class Accounts extends StatelessWidget {
-  // const Accounts({Key? key}) : super(key: key);
-
-  final String title;
-  const Accounts(this.title);
-
-  @override
-  Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: Color(0xFFFF355d5c),
-        border:
-            Border(bottom: BorderSide(width: 1.0, color: Color(0xFFFFe5fbef))),
-      ),
-      child: Container(
-        padding: const EdgeInsets.all(10.0),
-        width: 414,
-        height: 100,
-        child: Text(
-          title,
-          style: TextStyle(
-              fontSize: 24.0, fontWeight: FontWeight.w700, color: Colors.white),
-        ),
-      ),
-    );
+  void onTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
   }
 }

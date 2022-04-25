@@ -32,16 +32,9 @@ class MyApp extends StatelessWidget {
         backgroundColor: const Color.fromRGBO(40, 38, 56, 1),
         body: LoginScreen(),
         bottomNavigationBar: BottomAppBar(
-            color: Colors.transparent,
-            elevation: 0,
-            child: Container(
-              padding: EdgeInsets.all(20),
-              child: Text(
-                "Company name, Inc",
-                style: TextStyle(color: Colors.white),
-                textAlign: TextAlign.center,
-              ),
-            )),
+          color: Colors.transparent,
+          elevation: 0,
+        ),
       ),
     );
   }
